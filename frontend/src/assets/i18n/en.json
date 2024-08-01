@@ -1,0 +1,26 @@
+{
+  "navbar": {
+    "edit": "Edit",
+    "login": "Login",
+    "logout": "Logout",
+    "logo": "Ble ble bllelele"
+  },
+  "postlist": {
+    "add": "Add",
+
+    "sort": "Sort",
+    "sort-date": "Date",
+    "sort-title": "Title",
+    "sort-age": "Author age",
+
+    "filter": "Filter",
+    "filter-title": "Title",
+    "filter-tag": "Tag",
+    "filter-verified": "Only verified",
+
+    "verified": "VERIFIED",
+    "details": "DETAILS",
+    "previous": "PREVIOUS",
+    "next": "NEXT"
+  }
+}

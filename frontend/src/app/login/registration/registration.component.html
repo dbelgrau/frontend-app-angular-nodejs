@@ -1,0 +1,35 @@
+<div class="list-item">
+  <h3>Zarejestruj się</h3>
+  
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <div class="column">
+      <label>Email</label>
+      <input type="text" name="email" formControlName="email">
+      <div class="error" *ngIf="registerForm.controls.email.hasError('required')">
+        Pole jest wymagane</div>
+      <div class="error" *ngIf="registerForm.controls.email.hasError('email')">
+        Wpisz poprawny email</div>
+    </div>
+    <div class="column">
+      <label>Hasło</label>
+      <input type="password" name="password" formControlName="password">
+      <div class="error" *ngIf="registerForm.controls.password.hasError('required')">
+        Pole jest wymagane</div>
+    </div>
+    <div class="column">
+      <label>Powtórz hasło</label>
+      <input type="password" name="repeatPassword" formControlName="repeatPassword">
+      <div class="error" *ngIf="registerForm.controls.repeatPassword.hasError('required')">
+        Pole jest wymagane</div>
+      <div class="error" *ngIf="registerForm.errors?.['PasswordNoMatch']">
+        Hasła są różne</div>
+    </div>
+  
+    <div *ngIf="errorMessage">{{errorMessage}}</div>
+    <button *ngIf="registerForm.status === 'VALID'" type="submit" class="button-big">Zarejestruj</button>
+  </form>
+</div>
+
+<div class="list-item">
+  <button (click)="goToStart()" class="button-big">Pomiń</button>
+</div>

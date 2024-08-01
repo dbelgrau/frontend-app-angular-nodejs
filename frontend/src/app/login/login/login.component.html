@@ -1,0 +1,27 @@
+<div class="list-item">
+  <h3>Zaloguj się</h3>
+  
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="column">
+      <label>Email</label>
+      <input type="text" name="email" formControlName="email">
+      <div class="error" *ngIf="loginForm.controls.email.hasError('required')">
+        Pole jest wymagane</div>
+      <div class="error" *ngIf="loginForm.controls.email.hasError('email')">
+        Wpisz poprawny email</div>
+    </div>
+    <div class="column">
+      <label>Hasło</label>
+      <input type="password" name="password" formControlName="password">
+      <div class="error" *ngIf="loginForm.controls.password.hasError('required')">
+        Pole jest wymagane</div>
+    </div>
+  
+    <div *ngIf="errorMessage">{{errorMessage}}</div>
+    <button *ngIf="loginForm.status === 'VALID'" type="submit" class="button-big">Zaloguj</button>
+  </form>
+</div>
+
+<div class="list-item">
+  <button (click)="goToRegister()" class="button-big">Utwórz konto</button>
+</div>

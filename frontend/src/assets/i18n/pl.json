@@ -1,0 +1,26 @@
+{
+  "navbar": {
+    "edit": "Edytuj",
+    "login": "Zaloguj ",
+    "logout": "Wyloguj",
+    "logo": "Jakis tekst, może logo"
+  },
+  "postlist": {
+    "add": "Dodaj",
+
+    "sort":"Sortuj",
+    "sort-date": "Data",
+    "sort-title": "Tytuł",
+    "sort-age": "Wiek autora",
+
+    "filter": "Filtruj",
+    "filter-title": "Tytuł",
+    "filter-tag": "Tag",
+    "filter-verified": "Tylko zweryfikowane",
+
+    "verified": "ZWERYFIKOWANE",
+    "details": "Szczegóły",
+    "previous": "Poprzednia",
+    "next": "Nastepna"
+  }
+}

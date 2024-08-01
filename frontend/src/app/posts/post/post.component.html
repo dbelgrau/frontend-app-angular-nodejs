@@ -1,0 +1,39 @@
+<div class="list-item" *ngIf="post; else noPostMessage">
+  <h3 class="user">{{ post.title }}</h3>
+  <div class="center">Tagi</div>
+  <div class="in-line">
+    <div *ngFor="let tag of post.tags">{{ tag }}</div>
+  </div>
+  <div class="center">Dodał</div>
+  <div class="user in-line">
+    <h4>{{ post.author.name }}, {{ post.author.age }}</h4>
+    <h4>{{ post.date }}</h4>
+  </div>
+  <div class="text-center">{{ post.content }}</div>
+  <h4 class="center user" *ngIf="post.verified">ZWERYFIKOWANE</h4>
+  <div *ngIf="canModify" class="in-line">
+    <button (click)="goToForm()" class="button-big">Edytuj</button>
+    <button (click)="setConfirmDelete(true)" class="button-big">Usuń</button>
+  </div>
+  
+  <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+
+</div>
+
+<div class="list-item in-line">
+  <button (click)="goToPosts()" class="button-big">Wróć</button>
+</div>
+
+<app-modal *ngIf="confirmDelete">
+  <div class="dialog-content">Usunąć post?
+    <button class="button-small" (click)="deletePost()">Tak</button>
+    <button class="button-small" (click)="setConfirmDelete(false)">Nie</button>
+  </div>
+</app-modal>
+
+<ng-template #noPostMessage>
+  <div class="list-item">
+    <div>Brak danych</div>
+  </div>
+</ng-template>
+

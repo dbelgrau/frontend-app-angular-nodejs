@@ -1,0 +1,38 @@
+<div class="list-item">
+  <h3>Edytuj użytkownika</h3>
+  
+  <form [formGroup]="userForm" (ngSubmit)="setConfirmSave(true)">
+    <div class="column">
+      <label>Imię</label>
+      <input type="text" name="name" formControlName="name">
+      <div class="error" *ngIf="userForm.controls.name.hasError('required')">
+        Pole jest wymagane</div>
+      <div class="error" *ngIf="userForm.controls.name.hasError('maxlength')">
+        Maksymalnie 20 znaków</div>
+    </div>
+    <div class="column">
+      <label>Wiek</label>
+      <input type="number" name="age" formControlName="age">
+      <div class="error" *ngIf="userForm.controls.age.hasError('required')">
+        Pole jest wymagane</div>
+      <div class="error" *ngIf="userForm.controls.age.hasError('min')">
+        Wiek musi być dodatni</div>
+      <div class="error" *ngIf="userForm.controls.age.hasError('max')">
+        Jesteś aż tak stary?</div>
+    </div>
+
+    <app-modal *ngIf="confirmSave">
+      <div class="dialog-content">Zapisać zmiany?
+        <button class="button-small" (click)="save()">Tak</button>
+        <button class="button-small" (click)="setConfirmSave(false)">Nie</button>
+      </div>
+    </app-modal>
+  
+    <div *ngIf="errorMessage">{{errorMessage}}</div>
+    <button *ngIf="userForm.status === 'VALID'" type="submit" class="button-big">Zapisz</button>
+  </form>
+</div>
+
+<div class="list-item">
+  <button (click)="goToStart()" class="button-big">Strona główna</button>
+</div>

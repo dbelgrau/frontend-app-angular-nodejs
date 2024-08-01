@@ -1,0 +1,40 @@
+<div class="list-item in-line">
+  <button class="button-big" (click)="goToCreate()">{{ 'postlist.add' | translate}}</button>
+</div>
+
+<div class="list-item in-line">
+  <div>{{ 'postlist.sort' | translate}}</div>
+  <button (click)="sortByDate()" class="button-small">{{ 'postlist.sort-date' | translate}}</button>
+  <button (click)="sortByTitle()" class="button-small">{{ 'postlist.sort-title' | translate}}</button>
+  <button (click)="sortByAuthorAge()" class="button-small">{{ 'postlist.sort-age' | translate}}</button>
+</div>
+
+<div class="list-item">
+  <div class="column">
+    <div>{{ 'postlist.filter' | translate}}</div>
+    <input type="text" placeholder="{{ 'postlist.filter-title' | translate}}" [(ngModel)]="titleFilter" (input)="applyFilters()">
+    <input type="text" placeholder="{{ 'postlist.filter-tag' | translate}}" [(ngModel)]="tagFilter" (input)="applyFilters()">
+    <label class="with-checkbox">
+      <input class="checkbox" type="checkbox" [(ngModel)]="verifiedFilter" (change)="applyFilters()">
+      <div>{{ 'postlist.filter-verified' | translate}}</div>
+    </label>
+    <button class="button-small center" (click)="clearFilters()">Wyczyść filtry</button>
+  </div>
+</div>
+
+<div *ngFor="let post of paginatedPosts" class="list-item">
+  <h3 class="center user">{{ post.title }}</h3>
+  <div class="in-line user">
+    <h4>{{ post.author.name }}, {{ post.author.age }}</h4>
+    <h4>{{ post.date }}</h4>
+  </div>
+  <div class="text-center">{{ post.content }}</div>
+  <h4 class="center user" *ngIf="post.verified">{{ 'postlist.verified' | translate}}</h4>
+  <button class="button-big center" (click)="goToDetails(post.id)">{{ 'postlist.details' | translate}}</button>
+</div>
+
+<div class="list-item in-line">
+  <button class="button-small" (click)="goToPreviousPage()">{{ 'postlist.previous' | translate}}</button>
+  <h2>{{ currentPage }}</h2>
+  <button class="button-small" (click)="goToNextPage()">{{ 'postlist.next' | translate}}</button>
+</div>

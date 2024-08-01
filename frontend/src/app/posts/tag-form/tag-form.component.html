@@ -1,0 +1,7 @@
+<div [formGroup]="tagForm" class="column">
+  <input type="text" formControlName="tag">
+  <div class="error" *ngIf="tagForm.controls.tag.hasError('required')">
+    Pole jest wymagane</div>
+  <div class="error" *ngIf="tagForm.controls.tag.hasError('maxlength')">
+    Maksymalnie 20 znaków</div>
+</div>

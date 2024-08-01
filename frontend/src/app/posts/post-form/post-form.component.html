@@ -1,0 +1,54 @@
+<div class="list-item">
+  <ng-container *ngIf="isEditMode; else add">
+    <h3>Edytuj post</h3>
+  </ng-container>
+  <ng-template #add>
+    <h3>Dodaj post</h3>
+  </ng-template>
+  
+  <form [formGroup]="postForm" (ngSubmit)="setConfirmSave(true)">
+
+    <div class="column">
+      <label>Tytuł</label>
+      <input type="text" name="title" formControlName="title">
+      <div class="error" *ngIf="postForm.controls.title.hasError('required')">
+        Pole jest wymagane</div>
+      <div class="error" *ngIf="postForm.controls.title.hasError('maxlength')">
+        Maksymalnie 50 znaków</div>
+    </div>
+
+    <div class="column">
+      <label>Tekst</label>
+      <textarea name="content" formControlName="content"></textarea>
+      <div class="error" *ngIf="postForm.controls.content.hasError('required')">
+        Pole jest wymagane!</div>
+        <div class="error" *ngIf="postForm.controls.content.hasError('maxlength')">
+          Maksymalnie 1000 znaków</div>
+    </div>
+    
+
+    <div formArrayName="tags"  class="column">
+      <label>Tagi</label>
+      <div *ngFor="let tag of tags.controls; index as i"  class="in-line">
+        <app-tag-form [tagForm]="tag"></app-tag-form>
+        <button type="button" class="button-small" (click)="removeTag(i)">x</button>
+      </div>
+  
+      <button type="button" class="button-small center" (click)="addTag()">Dodaj tag</button>
+    </div>
+
+    <app-modal *ngIf="confirmSave">
+      <div class="dialog-content">Zapisać zmiany?
+        <button class="button-small" (click)="save()">Tak</button>
+        <button class="button-small" (click)="setConfirmSave(false)">Nie</button>
+      </div>
+    </app-modal>
+  
+    <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+    <button *ngIf="postForm.status === 'VALID'" type="submit" class="button-big center">Zapisz</button>
+  </form>
+</div>
+
+<div class="list-item in-line">
+  <button (click)="goToStart()" class="button-big">Strona główna</button>
+</div>
